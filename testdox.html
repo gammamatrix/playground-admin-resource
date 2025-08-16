@@ -78,26 +78,26 @@
         </ul>
         <h2>Instance (Tests\Feature\Playground\Admin\Resource\Http\Requests\FormRequest\Instance)</h2>
         <ul>
-            <li class="success">FormRequest authorize with admin</li>
+            <li class="success">Form request authorize with admin</li>
         </ul>
         <h2>Instance (Tests\Unit\Playground\Admin\Resource\Http\Controllers\UserController\Instance)</h2>
         <ul>
-            <li class="success">UserProvidergetUserClass with invalid user class</li>
+            <li class="success">User providerget user class with invalid user class</li>
         </ul>
         <h2>Instance (Tests\Unit\Playground\Admin\Resource\Http\Requests\FormRequest\Instance)</h2>
         <ul>
-            <li class="success">FormRequest authorize without user</li>
-            <li class="success">RULES is empty by default</li>
-            <li class="success">UserHasAdminPrivileges without user</li>
-            <li class="success">UserHasAdminPrivileges with admin</li>
-            <li class="success">UserHasAdminPrivileges with default laravel user</li>
+            <li class="success">Form request authorize without user</li>
+            <li class="success">Rule s is empty by default</li>
+            <li class="success">User has admin privileges without user</li>
+            <li class="success">User has admin privileges with admin</li>
+            <li class="success">User has admin privileges with default laravel user</li>
         </ul>
         <h2>Instance (Tests\Unit\Playground\Admin\Resource\ServiceProvider\Instance)</h2>
         <ul>
             <li class="success">Version matches</li>
-            <li class="success">SetPolicies with empty array</li>
-            <li class="success">SetPolicies with invalid model</li>
-            <li class="success">SetPolicies with invalid policy</li>
+            <li class="success">Set policies with empty array</li>
+            <li class="success">Set policies with invalid model</li>
+            <li class="success">Set policies with invalid policy</li>
         </ul>
         <h2>Policy (Tests\Unit\Playground\Admin\Resource\Policies\SettingPolicy\Policy)</h2>
         <ul>
@@ -140,8 +140,8 @@
             <li class="success">Json restore as admin and succeed</li>
             <li class="success">Restore as admin and succeed</li>
             <li class="success">Admin can render create view with return url</li>
-            <li class="success">Json update as admin without payload and fail validation</li>
-            <li class="success">Update as admin without payload and fail validation</li>
+            <li class="success">Json update as admin without payload and passes validation</li>
+            <li class="success">Update as admin without payload and passes validation</li>
             <li class="success">Json lock as admin and succeed</li>
             <li class="success">Json store as admin without payload and fail validation</li>
             <li class="success">Json unlock as admin and succeed</li>
@@ -152,8 +152,6 @@
             <li class="success">Json admin can get index with filters</li>
             <li class="success">Json edit as admin and fail validation with invalid parameter</li>
             <li class="success">Store as admin and succeed</li>
-            <li class="success">Json admin can update</li>
-            <li class="success">Admin can update</li>
             <li class="success">Create view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Json store as admin and succeed</li>
             <li class="success">Lock as admin and succeed with redirect to index with sorted by locked desc</li>
@@ -165,16 +163,18 @@
             <li class="success">Json unlock as admin and succeed with no redirect</li>
             <li class="success">Edit view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Unlock as admin and succeed with redirect to index with sorted by unlocked desc</li>
+            <li class="success">Json admin can update</li>
+            <li class="success">Admin can update</li>
             <li class="success">Destroy as admin and succeed with redirect to index with trash</li>
             <li class="success">Json destroy as admin and succeed with no content</li>
             <li class="success">Lock as user and get denied</li>
-            <li class="success">Admin can update view with return url</li>
             <li class="success">Store as admin and succeed with return url</li>
             <li class="success">Json lock as user and get denied</li>
             <li class="success">Json restore as user and get denied</li>
             <li class="success">Json unlock as user and get denied</li>
             <li class="success">Restore as user and get denied</li>
             <li class="success">Unlock as user and get denied</li>
+            <li class="success">Admin can update view with return url</li>
             <li class="success">Json destroy as admin and succeed and ignore redirect</li>
             <li class="success">Destroy as user and get denied and no force delete allowed</li>
             <li class="success">Json destroy as user and get denied and no force delete allowed</li>
@@ -184,18 +184,18 @@
             <li class="success">Request instance</li>
             <li class="success">Return playground rules</li>
             <li class="success">Return laravel rules</li>
-            <li class="success">PrepareForValidation for laravel</li>
-            <li class="success">PrepareForValidation for playground</li>
-            <li class="success">PrepareForValidation parameters</li>
+            <li class="success">Prepare for validation for laravel</li>
+            <li class="success">Prepare for validation for playground</li>
+            <li class="success">Prepare for validation parameters</li>
         </ul>
         <h2>Update Request (Tests\Unit\Playground\Admin\Resource\Http\Requests\User\UpdateRequest)</h2>
         <ul>
             <li class="success">Request instance</li>
             <li class="success">Return playground rules</li>
             <li class="success">Return laravel rules</li>
-            <li class="success">PrepareForValidation for laravel</li>
-            <li class="success">PrepareForValidation for playground</li>
-            <li class="success">PrepareForValidation parameters</li>
+            <li class="success">Prepare for validation for laravel</li>
+            <li class="success">Prepare for validation for playground</li>
+            <li class="success">Prepare for validation parameters</li>
         </ul>
         <h2>User Route (Tests\Feature\Playground\Admin\Resource\Http\Controllers\Playground\UserRoute)</h2>
         <ul>
@@ -234,8 +234,8 @@
             <li class="success">Json restore as admin and succeed</li>
             <li class="success">Restore as admin and succeed</li>
             <li class="success">Admin can render create view with return url</li>
-            <li class="success">Json update as admin without payload and fail validation</li>
-            <li class="success">Update as admin without payload and fail validation</li>
+            <li class="success">Json update as admin without payload and passes validation</li>
+            <li class="success">Update as admin without payload and passes validation</li>
             <li class="success">Json lock as admin and succeed</li>
             <li class="success">Json store as admin without payload and fail validation</li>
             <li class="success">Json unlock as admin and succeed</li>
@@ -246,8 +246,6 @@
             <li class="success">Json admin can get index with filters</li>
             <li class="success">Json edit as admin and fail validation with invalid parameter</li>
             <li class="success">Store as admin and succeed</li>
-            <li class="success">Json admin can update</li>
-            <li class="success">Admin can update</li>
             <li class="success">Create view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Json store as admin and succeed</li>
             <li class="success">Lock as admin and succeed with redirect to index with sorted by locked desc</li>
@@ -259,16 +257,18 @@
             <li class="success">Json unlock as admin and succeed with no redirect</li>
             <li class="success">Edit view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Unlock as admin and succeed with redirect to index with sorted by unlocked desc</li>
+            <li class="success">Json admin can update</li>
+            <li class="success">Admin can update</li>
             <li class="success">Destroy as admin and succeed with redirect to index with trash</li>
             <li class="success">Json destroy as admin and succeed with no content</li>
             <li class="success">Lock as user and get denied</li>
-            <li class="success">Admin can update view with return url</li>
             <li class="success">Store as admin and succeed with return url</li>
             <li class="success">Json lock as user and get denied</li>
             <li class="success">Json restore as user and get denied</li>
             <li class="success">Json unlock as user and get denied</li>
             <li class="success">Restore as user and get denied</li>
             <li class="success">Unlock as user and get denied</li>
+            <li class="success">Admin can update view with return url</li>
             <li class="success">Json destroy as admin and succeed and ignore redirect</li>
             <li class="success">Destroy as user and get denied and no force delete allowed</li>
             <li class="success">Json destroy as user and get denied and no force delete allowed</li>

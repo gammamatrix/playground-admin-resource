@@ -19,23 +19,23 @@ Index Route (Tests\Feature\Playground\Admin\Resource\Http\Controllers\Playground
  [x] Admin can render index view
 
 Instance (Tests\Feature\Playground\Admin\Resource\Http\Requests\FormRequest\Instance)
- [x] FormRequest authorize with admin
+ [x] Form request authorize with admin
 
 Instance (Tests\Unit\Playground\Admin\Resource\Http\Controllers\UserController\Instance)
- [x] UserProvidergetUserClass with invalid user class
+ [x] User providerget user class with invalid user class
 
 Instance (Tests\Unit\Playground\Admin\Resource\Http\Requests\FormRequest\Instance)
- [x] FormRequest authorize without user
- [x] RULES is empty by default
- [x] UserHasAdminPrivileges without user
- [x] UserHasAdminPrivileges with admin
- [x] UserHasAdminPrivileges with default laravel user
+ [x] Form request authorize without user
+ [x] Rule s is empty by default
+ [x] User has admin privileges without user
+ [x] User has admin privileges with admin
+ [x] User has admin privileges with default laravel user
 
 Instance (Tests\Unit\Playground\Admin\Resource\ServiceProvider\Instance)
  [x] Version matches
- [x] SetPolicies with empty array
- [x] SetPolicies with invalid model
- [x] SetPolicies with invalid policy
+ [x] Set policies with empty array
+ [x] Set policies with invalid model
+ [x] Set policies with invalid policy
 
 Policy (Tests\Unit\Playground\Admin\Resource\Policies\SettingPolicy\Policy)
  [x] Policy instance
@@ -76,8 +76,8 @@ Setting Route (Tests\Feature\Playground\Admin\Resource\Http\Controllers\Playgrou
  [x] Json restore as admin and succeed
  [x] Restore as admin and succeed
  [x] Admin can render create view with return url
- [x] Json update as admin without payload and fail validation
- [x] Update as admin without payload and fail validation
+ [x] Json update as admin without payload and passes validation
+ [x] Update as admin without payload and passes validation
  [x] Json lock as admin and succeed
  [x] Json store as admin without payload and fail validation
  [x] Json unlock as admin and succeed
@@ -88,8 +88,6 @@ Setting Route (Tests\Feature\Playground\Admin\Resource\Http\Controllers\Playgrou
  [x] Json admin can get index with filters
  [x] Json edit as admin and fail validation with invalid parameter
  [x] Store as admin and succeed
- [x] Json admin can update
- [x] Admin can update
  [x] Create view as admin with invalid parameter and fail validation and redirect
  [x] Json store as admin and succeed
  [x] Lock as admin and succeed with redirect to index with sorted by locked desc
@@ -101,16 +99,18 @@ Setting Route (Tests\Feature\Playground\Admin\Resource\Http\Controllers\Playgrou
  [x] Json unlock as admin and succeed with no redirect
  [x] Edit view as admin with invalid parameter and fail validation and redirect
  [x] Unlock as admin and succeed with redirect to index with sorted by unlocked desc
+ [x] Json admin can update
+ [x] Admin can update
  [x] Destroy as admin and succeed with redirect to index with trash
  [x] Json destroy as admin and succeed with no content
  [x] Lock as user and get denied
- [x] Admin can update view with return url
  [x] Store as admin and succeed with return url
  [x] Json lock as user and get denied
  [x] Json restore as user and get denied
  [x] Json unlock as user and get denied
  [x] Restore as user and get denied
  [x] Unlock as user and get denied
+ [x] Admin can update view with return url
  [x] Json destroy as admin and succeed and ignore redirect
  [x] Destroy as user and get denied and no force delete allowed
  [x] Json destroy as user and get denied and no force delete allowed
@@ -119,17 +119,17 @@ Store Request (Tests\Unit\Playground\Admin\Resource\Http\Requests\User\StoreRequ
  [x] Request instance
  [x] Return playground rules
  [x] Return laravel rules
- [x] PrepareForValidation for laravel
- [x] PrepareForValidation for playground
- [x] PrepareForValidation parameters
+ [x] Prepare for validation for laravel
+ [x] Prepare for validation for playground
+ [x] Prepare for validation parameters
 
 Update Request (Tests\Unit\Playground\Admin\Resource\Http\Requests\User\UpdateRequest)
  [x] Request instance
  [x] Return playground rules
  [x] Return laravel rules
- [x] PrepareForValidation for laravel
- [x] PrepareForValidation for playground
- [x] PrepareForValidation parameters
+ [x] Prepare for validation for laravel
+ [x] Prepare for validation for playground
+ [x] Prepare for validation parameters
 
 User Route (Tests\Feature\Playground\Admin\Resource\Http\Controllers\Playground\UserRoute)
  [x] Guest cannot render index view
@@ -167,8 +167,8 @@ User Route (Tests\Feature\Playground\Admin\Resource\Http\Controllers\Playground\
  [x] Json restore as admin and succeed
  [x] Restore as admin and succeed
  [x] Admin can render create view with return url
- [x] Json update as admin without payload and fail validation
- [x] Update as admin without payload and fail validation
+ [x] Json update as admin without payload and passes validation
+ [x] Update as admin without payload and passes validation
  [x] Json lock as admin and succeed
  [x] Json store as admin without payload and fail validation
  [x] Json unlock as admin and succeed
@@ -179,8 +179,6 @@ User Route (Tests\Feature\Playground\Admin\Resource\Http\Controllers\Playground\
  [x] Json admin can get index with filters
  [x] Json edit as admin and fail validation with invalid parameter
  [x] Store as admin and succeed
- [x] Json admin can update
- [x] Admin can update
  [x] Create view as admin with invalid parameter and fail validation and redirect
  [x] Json store as admin and succeed
  [x] Lock as admin and succeed with redirect to index with sorted by locked desc
@@ -192,16 +190,18 @@ User Route (Tests\Feature\Playground\Admin\Resource\Http\Controllers\Playground\
  [x] Json unlock as admin and succeed with no redirect
  [x] Edit view as admin with invalid parameter and fail validation and redirect
  [x] Unlock as admin and succeed with redirect to index with sorted by unlocked desc
+ [x] Json admin can update
+ [x] Admin can update
  [x] Destroy as admin and succeed with redirect to index with trash
  [x] Json destroy as admin and succeed with no content
  [x] Lock as user and get denied
- [x] Admin can update view with return url
  [x] Store as admin and succeed with return url
  [x] Json lock as user and get denied
  [x] Json restore as user and get denied
  [x] Json unlock as user and get denied
  [x] Restore as user and get denied
  [x] Unlock as user and get denied
+ [x] Admin can update view with return url
  [x] Json destroy as admin and succeed and ignore redirect
  [x] Destroy as user and get denied and no force delete allowed
  [x] Json destroy as user and get denied and no force delete allowed
