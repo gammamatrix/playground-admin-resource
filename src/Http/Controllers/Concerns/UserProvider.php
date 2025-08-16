@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * Playground
  */
+
 namespace Playground\Admin\Resource\Http\Controllers\Concerns;
 
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -37,7 +38,7 @@ trait UserProvider
     }
 
     /**
-     * @param array<string, mixed> $data
+     * @param  array<string, mixed>  $data
      * @return Model&Authenticatable
      */
     protected function getUserInstance(array $data = []): Model

@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * Playground
  */
+
 namespace Playground\Admin\Resource\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -257,7 +258,7 @@ class SettingController extends Controller
         }
 
         $perUser = ! empty($validated['perUser']) && is_int($validated['perUser']) ? $validated['perUser'] : null;
-        $paginator = $query->paginate( $perUser);
+        $paginator = $query->paginate($perUser);
 
         $paginator->appends($validated);
 

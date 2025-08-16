@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * Playground
  */
+
 namespace Playground\Admin\Resource\Http\Requests\Setting;
 
 use Playground\Http\Requests\UpdateRequest as BaseUpdateRequest;
@@ -64,7 +65,7 @@ class UpdateRequest extends BaseUpdateRequest
         'suspended' => ['boolean'],
         'unknown' => ['boolean'],
         'label' => ['string'],
-        'title' => ['string', 'required'],
+        'title' => ['string'],
         'byline' => ['string'],
         'slug' => ['nullable', 'string'],
         'url' => ['string'],

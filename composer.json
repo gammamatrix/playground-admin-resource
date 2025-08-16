@@ -1,6 +1,6 @@
 {
     "name": "gammamatrix/playground-admin-resource",
-    "description": "Playground: Provides an API and a Blade UI for interacting with Playground Admin, a gement System for Laravel applications.",
+    "description": "Playground: Provides an API and a Blade UI for interacting with Playground Admin, a User and Settings management System for Laravel applications.",
     "keywords": [
         "admin",
         "site administration",
@@ -19,16 +19,18 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.4",
         "gammamatrix/playground-auth": "*",
         "gammamatrix/playground-blade": "*",
         "gammamatrix/playground-http": "*",
-        "gammamatrix/playground-admin": "*"
+        "gammamatrix/playground-admin": "*",
+        "illuminate/support": "^12.0"
     },
     "require-dev": {
         "gammamatrix/playground-test": "*",
         "gammamatrix/playground-login-blade": "*",
-        "gammamatrix/playground-site-blade": "*"
+        "gammamatrix/playground-site-blade": "*",
+        "illuminate/testing": "^12.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -52,8 +54,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-develop": "73.x-dev",
-            "dev-master": "73.x-dev"
+            "dev-develop": "74.x-dev"
         },
         "laravel": {
             "providers": [
@@ -64,7 +65,8 @@
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max",
         "cloc": "cloc --exclude-dir=output,vendor .",
-        "format": "vendor/bin/php-cs-fixer fix",
-        "test": "vendor/bin/phpunit"
+        "format": "vendor/bin/pint",
+        "test": "vendor/bin/phpunit",
+        "test-dev": "vendor/bin/phpunit -c phpunit-dev.xml"
     }
 }

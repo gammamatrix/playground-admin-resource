@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Playground
  */
 declare(strict_types=1);
+
 namespace Playground\Admin\Resource\Http\Resources;
 
 use Illuminate\Database\Eloquent\Model;
@@ -19,7 +21,7 @@ class User extends JsonResource
     /**
      * Get additional data that should be returned with the resource array.
      *
-     * @param Request&FormRequest $request
+     * @param  Request&FormRequest  $request
      * @return array<string, mixed>
      */
     public function with(Request $request): array

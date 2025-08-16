@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * Playground
  */
+
 namespace Playground\Admin\Resource\Http\Requests\Setting;
 
 use Playground\Http\Requests\IndexRequest as BaseIndexRequest;

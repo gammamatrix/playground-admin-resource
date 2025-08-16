@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * Playground
  */
+
 namespace Tests\Unit\Playground\Admin\Resource\ServiceProvider;
 
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +27,7 @@ class InstanceTest extends TestCase
         $this->assertSame(ServiceProvider::VERSION, $instance::VERSION);
     }
 
-    public function test_setPolicies_with_empty_array(): void
+    public function test_set_policies_with_empty_array(): void
     {
         $instance = (new \ReflectionClass(ServiceProvider::class))->newInstanceWithoutConstructor();
 
@@ -40,7 +41,7 @@ class InstanceTest extends TestCase
         );
     }
 
-    public function test_setPolicies_with_invalid_model(): void
+    public function test_set_policies_with_invalid_model(): void
     {
         $log = LogFake::bind();
 
@@ -69,7 +70,7 @@ class InstanceTest extends TestCase
         );
     }
 
-    public function test_setPolicies_with_invalid_policy(): void
+    public function test_set_policies_with_invalid_policy(): void
     {
         $log = LogFake::bind();
 

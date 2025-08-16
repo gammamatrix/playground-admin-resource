@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * Playground
  */
+
 namespace Tests\Unit\Playground\Admin\Resource;
 
 use Playground\Test\OrchestraTestCase;

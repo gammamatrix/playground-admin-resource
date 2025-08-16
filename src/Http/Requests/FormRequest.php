@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * Playground
  */
+
 namespace Playground\Admin\Resource\Http\Requests;
 
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -46,7 +47,7 @@ class FormRequest extends BaseFormRequest
         return $rules;
     }
 
-    public function userHasAdminPrivileges(Authenticatable $user = null): bool
+    public function userHasAdminPrivileges(?Authenticatable $user = null): bool
     {
         $admin = false;
         if (! empty($user)) {

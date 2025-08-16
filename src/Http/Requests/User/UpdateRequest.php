@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * Playground
  */
+
 namespace Playground\Admin\Resource\Http\Requests\User;
 
 use Playground\Http\Requests\UpdateRequest as BaseUpdateRequest;
@@ -35,8 +36,8 @@ class UpdateRequest extends BaseUpdateRequest
         'problem' => ['boolean'],
         'suspended' => ['boolean'],
         'unknown' => ['boolean'],
-        'name' => ['string', 'required'],
-        'email' => ['email', 'required'],
+        'name' => ['string',],
+        'email' => ['email',],
         'address' => ['string'],
         'password' => ['string'],
         'phone' => ['string'],
@@ -66,8 +67,8 @@ class UpdateRequest extends BaseUpdateRequest
      * @var array<string, string|array<mixed>>
      */
     public const RULES_STANDARD = [
-        'name' => ['string', 'required'],
-        'email' => ['email', 'required'],
+        'name' => ['string'],
+        'email' => ['email'],
         '_return_url' => ['nullable', 'url'],
     ];
 
@@ -120,9 +121,9 @@ class UpdateRequest extends BaseUpdateRequest
     public function rules(): array
     {
         if (config('playground-admin-resource.users.rules') === 'playground') {
-            $rules = is_array(static::RULES) ? static::RULES : [];
+            $rules = static::RULES;
         } else {
-            $rules = is_array(static::RULES_STANDARD) ? static::RULES_STANDARD : [];
+            $rules = static::RULES_STANDARD;
         }
 
         return $rules;

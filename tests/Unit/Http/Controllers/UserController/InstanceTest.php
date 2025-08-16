@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * Playground
  */
+
 namespace Tests\Unit\Playground\Admin\Resource\Http\Controllers\UserController;
 
 use Playground\Admin\Resource\Http\Controllers\UserController;
@@ -18,7 +19,7 @@ class InstanceTest extends TestCase
 {
     use MockingTrait;
 
-    public function test_UserProvidergetUserClass_with_invalid_user_class(): void
+    public function test_user_providerget_user_class_with_invalid_user_class(): void
     {
         $this->expectException(ValueError::class);
         // $this->expectExceptionMessage(InvalidArgumentException::class);

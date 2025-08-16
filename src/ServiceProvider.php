@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * Playground
  */
+
 namespace Playground\Admin\Resource;
 
 use Illuminate\Foundation\Console\AboutCommand;
@@ -91,7 +92,7 @@ class ServiceProvider extends AuthServiceProvider
     /**
      * Set the application's policies from the configuration.
      *
-     * @param array<class-string, class-string> $policies
+     * @param  array<class-string, class-string>  $policies
      */
     public function setPolicies(array $policies): void
     {
@@ -121,7 +122,7 @@ class ServiceProvider extends AuthServiceProvider
     }
 
     /**
-     * @param array<string, mixed> $config
+     * @param  array<string, mixed>  $config
      */
     public function routes(array $config): void
     {

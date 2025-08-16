@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Tests\Unit\Playground\Admin\Resource\Http\Requests\User;
 
 use Playground\Admin\Resource\Http\Requests\User\UpdateRequest;
@@ -104,7 +106,7 @@ class UpdateRequestTest extends RequestTestCase
         $this->assertCount(count($keys), $rules);
     }
 
-    public function test_prepareForValidation_for_laravel(): void
+    public function test_prepare_for_validation_for_laravel(): void
     {
         config([
             'playground-admin-resource.users.rules' => 'laravel',
@@ -114,7 +116,7 @@ class UpdateRequestTest extends RequestTestCase
         $this->assertEmpty($this->invokeProtected($instance, 'prepareForValidation'));
     }
 
-    public function test_prepareForValidation_for_playground(): void
+    public function test_prepare_for_validation_for_playground(): void
     {
         config([
             'playground-admin-resource.users.rules' => 'playground',
@@ -124,7 +126,7 @@ class UpdateRequestTest extends RequestTestCase
         $this->assertEmpty($this->invokeProtected($instance, 'prepareForValidation'));
     }
 
-    public function test_prepareForValidation_parameters(): void
+    public function test_prepare_for_validation_parameters(): void
     {
         $request = $this->mockRequest(UpdateRequest::class, 'PATCH', '/testing', [
             'title' => 'Captain',

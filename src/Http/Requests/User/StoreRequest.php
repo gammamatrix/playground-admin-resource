@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * Playground
  */
+
 namespace Playground\Admin\Resource\Http\Requests\User;
 
 use Playground\Http\Requests\StoreRequest as BaseStoreRequest;
