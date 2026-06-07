@@ -238,6 +238,15 @@ class UserController extends Controller
     ): JsonResponse|View|UserCollection {
         $u = $request->user();
 
+        /**
+         * @var array{
+         *     sort: string|array<mixed>,
+         *     filter: array{
+         *         trash: string
+         *     },
+         *     perPage: int
+         * } $validated
+         */
         $validated = $request->validated();
 
         // /**
@@ -289,8 +298,8 @@ class UserController extends Controller
             }
         }
 
-        $perUser = ! empty($validated['perUser']) && is_int($validated['perUser']) ? $validated['perUser'] : null;
-        $paginator = $query->paginate($perUser);
+        $perPage = ! empty($validated['perPage']) && is_int($validated['perPage']) ? $validated['perPage'] : null;
+        $paginator = $query->paginate($perPage);
 
         $paginator->appends($validated);
 

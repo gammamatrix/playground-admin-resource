@@ -3,7 +3,7 @@
 [![Playground CI Workflow](https://github.com/gammamatrix/playground-admin-resource/actions/workflows/ci.yml/badge.svg?branch=develop)](https://raw.githubusercontent.com/gammamatrix/playground-admin-resource/testing/develop/testdox.txt)
 [![Test Coverage](https://raw.githubusercontent.com/gammamatrix/playground-admin-resource/testing/develop/coverage.svg)](tests)
 
-[//]: # ([![PHPStan Level 9 src and tests]&#40;https://img.shields.io/badge/PHPStan-level%209-brightgreen&#41;]&#40;.github/workflows/ci.yml#L120&#41;)
+[//]: # ([![PHPStan Level 10 src and tests]&#40;https://img.shields.io/badge/PHPStan-level%2010-brightgreen&#41;]&#40;.github/workflows/ci.yml#L120&#41;)
 
 The `playground-admin-resource` Laravel package.
 

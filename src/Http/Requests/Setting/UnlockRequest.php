@@ -17,7 +17,7 @@ class UnlockRequest extends FormRequest
     /**
      * @var array<string, string|array<mixed>>
      */
-    public const RULES = [
+    public const array RULES = [
         '_return_url' => ['nullable', 'url'],
     ];
 }

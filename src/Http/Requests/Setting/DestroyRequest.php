@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Playground\Admin\Resource\Http\Requests\Setting;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Playground\Admin\Resource\Http\Requests\FormRequest;
 
 /**
@@ -17,14 +18,14 @@ class DestroyRequest extends FormRequest
     /**
      * @var array<string, string|array<mixed>>
      */
-    public const RULES = [
+    public const array RULES = [
         '_return_url' => ['nullable', 'url'],
     ];
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, mixed>
      */
     public function rules(): array
     {

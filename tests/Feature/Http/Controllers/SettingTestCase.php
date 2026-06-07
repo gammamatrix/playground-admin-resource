@@ -7,12 +7,14 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Playground\Admin\Resource\Http\Controllers;
 
+use Playground\Admin\Models\Setting;
+
 /**
  * \Tests\Feature\Playground\Admin\Resource\Http\Controllers\SettingTestCase
  */
 class SettingTestCase extends TestCase
 {
-    public string $fqdn = \Playground\Admin\Models\Setting::class;
+    public string $fqdn = Setting::class;
 
     /**
      * @var array<string, string>

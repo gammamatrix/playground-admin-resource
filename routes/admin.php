@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Playground\Admin\Models\Setting;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,5 @@ Route::group([
     Route::get('/', [
         'as' => 'playground.admin.resource',
         'uses' => 'IndexController@index',
-    ])->can('index', Playground\Admin\Models\Setting::class);
+    ])->can('index', Setting::class);
 });

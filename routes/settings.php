@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Playground\Admin\Models\Setting;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,14 +32,14 @@ Route::group([
     Route::get('/', [
         'as' => 'playground.admin.resource.settings',
         'uses' => 'SettingController@index',
-    ])->can('index', Playground\Admin\Models\Setting::class);
+    ])->can('index', Setting::class);
 
     // UI
 
     Route::get('/create', [
         'as' => 'playground.admin.resource.settings.create',
         'uses' => 'SettingController@create',
-    ])->can('create', Playground\Admin\Models\Setting::class);
+    ])->can('create', Setting::class);
 
     Route::get('/edit/{setting}', [
         'as' => 'playground.admin.resource.settings.edit',
@@ -88,7 +89,7 @@ Route::group([
     Route::post('/', [
         'as' => 'playground.admin.resource.settings.post',
         'uses' => 'SettingController@store',
-    ])->can('store', Playground\Admin\Models\Setting::class);
+    ])->can('store', Setting::class);
 
     // Route::put('/', [
     //     'as'   => 'playground.admin.resource.settings.put',

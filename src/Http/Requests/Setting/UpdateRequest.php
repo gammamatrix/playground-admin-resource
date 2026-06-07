@@ -17,7 +17,7 @@ class UpdateRequest extends BaseUpdateRequest
     /**
      * @var array<string, string|array<mixed>>
      */
-    public const RULES = [
+    public const array RULES = [
         'owned_by_id' => ['nullable', 'uuid'],
         'parent_id' => ['nullable', 'uuid'],
         'setting_type' => ['nullable', 'string'],

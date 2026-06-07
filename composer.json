@@ -24,13 +24,14 @@
         "gammamatrix/playground-blade": "*",
         "gammamatrix/playground-http": "*",
         "gammamatrix/playground-admin": "*",
-        "illuminate/support": "^12.0"
+        "illuminate/support": "^13.0"
     },
     "require-dev": {
         "gammamatrix/playground-test": "*",
         "gammamatrix/playground-login-blade": "*",
         "gammamatrix/playground-site-blade": "*",
-        "illuminate/testing": "^12.0"
+        "illuminate/testing": "^13.0",
+        "tomasvotruba/bladestan": "dev-main"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -54,7 +55,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-develop": "74.x-dev"
+            "dev-develop": "75.x-dev"
         },
         "laravel": {
             "providers": [
@@ -66,7 +67,14 @@
         "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max",
         "cloc": "cloc --exclude-dir=output,vendor .",
         "format": "vendor/bin/pint",
-        "test": "vendor/bin/phpunit",
-        "test-dev": "vendor/bin/phpunit -c phpunit-dev.xml"
+        "test": "vendor/bin/testbench package:test",
+        "test-dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "vendor/bin/phpunit -c phpunit-dev.xml"
+        ],
+        "test-parallel": [
+            "Composer\\Config::disableProcessTimeout",
+            "vendor/bin/paratest -c phpunit-dev.xml"
+        ]
     }
 }

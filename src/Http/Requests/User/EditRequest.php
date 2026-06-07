@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Playground\Admin\Resource\Http\Requests\User;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Playground\Admin\Resource\Http\Requests\FormRequest;
 
 /**
@@ -75,14 +76,14 @@ class EditRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, mixed>
      */
     public function rules(): array
     {
         if (config('playground-admin-resource.users.rules') === 'playground') {
-            $rules = is_array(static::RULES) ? static::RULES : [];
+            $rules = static::RULES;
         } else {
-            $rules = is_array(static::RULES_STANDARD) ? static::RULES_STANDARD : [];
+            $rules = static::RULES_STANDARD;
         }
 
         return $rules;

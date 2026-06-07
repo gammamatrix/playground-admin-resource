@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Playground\Admin\Resource\Http\Requests\User;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Playground\Http\Requests\UpdateRequest as BaseUpdateRequest;
 
 /**
@@ -36,8 +37,8 @@ class UpdateRequest extends BaseUpdateRequest
         'problem' => ['boolean'],
         'suspended' => ['boolean'],
         'unknown' => ['boolean'],
-        'name' => ['string',],
-        'email' => ['email',],
+        'name' => ['string'],
+        'email' => ['email'],
         'address' => ['string'],
         'password' => ['string'],
         'phone' => ['string'],
@@ -116,7 +117,7 @@ class UpdateRequest extends BaseUpdateRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, mixed>
      */
     public function rules(): array
     {
