@@ -18,7 +18,7 @@ use Playground\Auth\Policies\Policy;
  */
 class ServiceProvider extends AuthServiceProvider
 {
-    public const VERSION = '73.0.0';
+    public const VERSION = '75.0.0';
 
 
     protected string $package = 'playground-admin-resource';
