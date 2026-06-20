@@ -135,4 +135,10 @@ class UserRouteTest extends UserTestCase
     protected array $update_payload = [
         'email' => 'different@example.org',
     ];
+
+//    public function test_json_destroy_as_admin_and_succeed()
+//    {
+//        $this->markTestSkipped('TODO: investigate user destroy');
+//        // parent::test_json_destroy_as_admin_and_succeed();
+//    }
 }

@@ -1,9 +1,10 @@
 <?php
 
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 
 namespace Playground\Admin\Resource\Http\Controllers;
 
@@ -13,18 +14,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Playground\Admin\Models\Setting;
-use Playground\Admin\Resource\Http\Requests\Setting\CreateRequest;
-use Playground\Admin\Resource\Http\Requests\Setting\DestroyRequest;
-use Playground\Admin\Resource\Http\Requests\Setting\EditRequest;
-use Playground\Admin\Resource\Http\Requests\Setting\IndexRequest;
-use Playground\Admin\Resource\Http\Requests\Setting\LockRequest;
-use Playground\Admin\Resource\Http\Requests\Setting\RestoreRequest;
-use Playground\Admin\Resource\Http\Requests\Setting\ShowRequest;
-use Playground\Admin\Resource\Http\Requests\Setting\StoreRequest;
-use Playground\Admin\Resource\Http\Requests\Setting\UnlockRequest;
-use Playground\Admin\Resource\Http\Requests\Setting\UpdateRequest;
-use Playground\Admin\Resource\Http\Resources\Setting as SettingResource;
-use Playground\Admin\Resource\Http\Resources\SettingCollection;
+use Playground\Admin\Resource\Http\Requests;
+use Playground\Admin\Resource\Http\Resources;
 
 /**
  * \Playground\Admin\Resource\Http\Controllers\SettingController
@@ -42,7 +33,7 @@ class SettingController extends Controller
         'model_slug' => 'setting',
         'model_slug_plural' => 'settings',
         'module_label' => 'Admin',
-        'module_label_plural' => 'Admin',
+        'module_label_plural' => 'Directories',
         'module_route' => 'playground.admin.resource',
         'module_slug' => 'admin',
         'privilege' => 'playground-admin-resource:setting',
@@ -51,40 +42,40 @@ class SettingController extends Controller
     ];
 
     /**
-     * CREATE the Setting resource in storage.
+     * Create the Setting resource in storage.
      *
      * @route GET /resource/admin/settings/create playground.admin.resource.settings.create
      */
     public function create(
-        CreateRequest $request
-    ): JsonResponse|View {
+        Requests\Setting\CreateRequest $request
+    ): JsonResponse|View|Resources\Setting {
+
+        $packageInfo = $this->packageInfo();
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         $setting = new Setting($validated);
+
+        if ($request->expectsJson()) {
+            return new Resources\Setting($setting)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
+
+        $user = $request->user();
 
         $meta = [
             'session_user_id' => $user?->id,
             'id' => null,
             'timestamp' => Carbon::now()->toJson(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
+            'info' => $packageInfo,
         ];
-
-        $meta['input'] = $request->input();
-        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $setting,
             'meta' => $meta,
             '_method' => 'post',
         ];
-
-        if ($request->expectsJson()) {
-            return response()->json($data);
-        }
 
         $flash = $setting->toArray();
 
@@ -97,32 +88,48 @@ class SettingController extends Controller
             session()->flashInput($flash);
         }
 
-        return view($this->getViewPath('setting', 'form'), $data);
+        /**
+         * @var view-string $view
+         */
+        $view = sprintf('%1$s/form', $packageInfo->view());
+
+        return view($view, $data);
     }
 
     /**
      * Edit the Setting resource in storage.
      *
-     * @route GET /resource/admin/settings/settings/edit playground.admin.resource.settings.edit
+     * @route GET /resource/admin/settings/edit/{setting} playground.admin.resource.settings.edit
      */
     public function edit(
         Setting $setting,
-        EditRequest $request
-    ): JsonResponse|View {
+        Requests\Setting\EditRequest $request
+    ): JsonResponse|View|Resources\Setting {
+
+        $packageInfo = $this->packageInfo();
+
         $validated = $request->validated();
 
+        if ($request->expectsJson()) {
+            return new Resources\Setting($setting)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
+
         $user = $request->user();
+
+        $flash = $setting->toArray();
+
+        if (! empty($validated['_return_url'])) {
+            $flash['_return_url'] = $validated['_return_url'];
+        }
 
         $meta = [
             'session_user_id' => $user?->id,
             'id' => $setting->id,
             'timestamp' => Carbon::now()->toJson(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
+            'info' => $packageInfo,
         ];
-
-        $meta['input'] = $request->input();
-        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $setting,
@@ -130,23 +137,18 @@ class SettingController extends Controller
             '_method' => 'patch',
         ];
 
-        if ($request->expectsJson()) {
-            return response()->json($data);
-        }
-
-        $flash = $setting->toArray();
-
         if (! empty($validated['_return_url'])) {
-            $flash['_return_url'] = $validated['_return_url'];
             $data['_return_url'] = $validated['_return_url'];
         }
 
         session()->flashInput($flash);
 
-        return view(
-            'playground-admin-resource::setting/form',
-            $data
-        );
+        /**
+         * @var view-string $view
+         */
+        $view = sprintf('%1$s/form', $packageInfo->view());
+
+        return view($view, $data);
     }
 
     /**
@@ -156,9 +158,18 @@ class SettingController extends Controller
      */
     public function destroy(
         Setting $setting,
-        DestroyRequest $request
+        Requests\Setting\DestroyRequest $request
     ): Response|RedirectResponse {
+
+        $packageInfo = $this->packageInfo();
+
         $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $setting->modified_by_id = $user->id;
+        }
 
         if (empty($validated['force'])) {
             $setting->delete();
@@ -176,7 +187,7 @@ class SettingController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.admin.resource.settings'));
+        return redirect(route($packageInfo->model_route()));
     }
 
     /**
@@ -186,26 +197,27 @@ class SettingController extends Controller
      */
     public function lock(
         Setting $setting,
-        LockRequest $request
-    ): JsonResponse|RedirectResponse|SettingResource {
+        Requests\Setting\LockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Setting {
+
+        $packageInfo = $this->packageInfo();
+
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $setting->setAttribute('locked', true);
+        if ($user?->id) {
+            $setting->modified_by_id = $user->id;
+        }
+
+        $setting->locked = true;
 
         $setting->save();
 
-        $meta = [
-            'session_user_id' => $user?->id,
-            'id' => $setting->id,
-            'timestamp' => Carbon::now()->toJson(),
-            'info' => $this->packageInfo,
-        ];
-        // dump($request);
-
         if ($request->expectsJson()) {
-            return (new SettingResource($setting))->response($request);
+            return new Resources\Setting($setting)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -214,7 +226,10 @@ class SettingController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.admin.resource.settings.show', ['setting' => $setting->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $packageInfo->model_route()
+        ), ['setting' => $setting->id]));
     }
 
     /**
@@ -223,9 +238,10 @@ class SettingController extends Controller
      * @route GET /resource/admin/settings playground.admin.resource.settings
      */
     public function index(
-        IndexRequest $request
-    ): JsonResponse|View|SettingCollection {
-        $user = $request->user();
+        Requests\Setting\IndexRequest $request
+    ): JsonResponse|View|Resources\SettingCollection {
+
+        $packageInfo = $this->packageInfo();
 
         /**
          * @var array{
@@ -238,11 +254,12 @@ class SettingController extends Controller
          */
         $validated = $request->validated();
 
-        $query = Setting::addSelect(sprintf('%1$s.*', $this->packageInfo['table']));
+        $query = Setting::addSelect(sprintf('%1$s.*', $packageInfo->table()));
 
         $query->sort($validated['sort'] ?? null);
 
         if (! empty($validated['filter']) && is_array($validated['filter'])) {
+
             $query->filterTrash($validated['filter']['trash'] ?? null);
 
             $query->filterIds(
@@ -272,8 +289,10 @@ class SettingController extends Controller
         $paginator->appends($validated);
 
         if ($request->expectsJson()) {
-            return (new SettingCollection($paginator))->response($request);
+            return new Resources\SettingCollection($paginator)->response($request);
         }
+
+        $user = $request->user();
 
         $meta = [
             'session_user_id' => $user?->id,
@@ -285,7 +304,7 @@ class SettingController extends Controller
             'sortable' => $request->getSortable(),
             'timestamp' => Carbon::now()->toJson(),
             'validated' => $validated,
-            'info' => $this->packageInfo,
+            'info' => $packageInfo,
         ];
 
         $data = [
@@ -293,10 +312,12 @@ class SettingController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-admin-resource::setting/index',
-            $data
-        );
+        /**
+         * @var view-string $view
+         */
+        $view = sprintf('%1$s/index', $packageInfo->view());
+
+        return view($view, $data);
     }
 
     /**
@@ -306,16 +327,23 @@ class SettingController extends Controller
      */
     public function restore(
         Setting $setting,
-        RestoreRequest $request
-    ): JsonResponse|RedirectResponse|SettingResource {
+        Requests\Setting\RestoreRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Setting {
+
+        $packageInfo = $this->packageInfo();
+
         $validated = $request->validated();
 
         $user = $request->user();
 
+        $setting->modified_by_id = $user?->id;
+
         $setting->restore();
 
         if ($request->expectsJson()) {
-            return (new SettingResource($setting))->response($request);
+            return new Resources\Setting($setting)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -324,7 +352,10 @@ class SettingController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.admin.resource.settings.show', ['setting' => $setting->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $packageInfo->model_route()
+        ), ['setting' => $setting->id]));
     }
 
     /**
@@ -334,9 +365,16 @@ class SettingController extends Controller
      */
     public function show(
         Setting $setting,
-        ShowRequest $request
-    ): JsonResponse|View|SettingResource {
-        $validated = $request->validated();
+        Requests\Setting\ShowRequest $request
+    ): JsonResponse|View|Resources\Setting {
+
+        $packageInfo = $this->packageInfo();
+
+        if ($request->expectsJson()) {
+            return new Resources\Setting($setting)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
 
         $user = $request->user();
 
@@ -344,48 +382,47 @@ class SettingController extends Controller
             'session_user_id' => $user?->id,
             'id' => $setting->id,
             'timestamp' => Carbon::now()->toJson(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
+            'info' => $packageInfo,
         ];
-
-        if ($request->expectsJson()) {
-            return (new SettingResource($setting))->response($request);
-        }
-
-        $meta['input'] = $request->input();
-        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $setting,
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-admin-resource::setting/detail',
-            $data
-        );
+        /**
+         * @var view-string $view
+         */
+        $view = sprintf('%1$s/detail', $packageInfo->view());
+
+        return view($view, $data);
     }
 
     /**
      * Store a newly created API Setting resource in storage.
      *
-     * @route POST /resource/admin playground.admin.resource.settings.post
+     * @route POST /resource/admin/settings playground.admin.resource.settings.post
      */
     public function store(
-        StoreRequest $request
-    ): Response|JsonResponse|RedirectResponse|SettingResource {
+        Requests\Setting\StoreRequest $request
+    ): Response|JsonResponse|RedirectResponse|Resources\Setting {
+
+        $packageInfo = $this->packageInfo();
+
         $validated = $request->validated();
 
         $user = $request->user();
 
         $setting = new Setting($validated);
 
+        $setting->created_by_id = $user?->id;
+
         $setting->save();
 
         if ($request->expectsJson()) {
-            return (new SettingResource($setting))
-                ->response($request)
-                ->setStatusCode(201);
+            return new Resources\Setting($setting)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request)->setStatusCode(201);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -394,7 +431,10 @@ class SettingController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.admin.resource.settings.show', ['setting' => $setting->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $packageInfo->model_route()
+        ), ['setting' => $setting->id]));
     }
 
     /**
@@ -404,18 +444,25 @@ class SettingController extends Controller
      */
     public function unlock(
         Setting $setting,
-        UnlockRequest $request
-    ): JsonResponse|RedirectResponse|SettingResource {
+        Requests\Setting\UnlockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Setting {
+
+        $packageInfo = $this->packageInfo();
+
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $setting->setAttribute('locked', false);
+        $setting->locked = false;
+
+        $setting->modified_by_id = $user?->id;
 
         $setting->save();
 
         if ($request->expectsJson()) {
-            return (new SettingResource($setting))->response($request);
+            return new Resources\Setting($setting)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -424,7 +471,10 @@ class SettingController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.admin.resource.settings.show', ['setting' => $setting->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $packageInfo->model_route()
+        ), ['setting' => $setting->id]));
     }
 
     /**
@@ -434,16 +484,23 @@ class SettingController extends Controller
      */
     public function update(
         Setting $setting,
-        UpdateRequest $request
-    ): JsonResponse|RedirectResponse|SettingResource {
+        Requests\Setting\UpdateRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Setting {
+
+        $packageInfo = $this->packageInfo();
+
         $validated = $request->validated();
 
         $user = $request->user();
 
+        $setting->modified_by_id = $user?->id;
+
         $setting->update($validated);
 
         if ($request->expectsJson()) {
-            return (new SettingResource($setting))->response($request);
+            return new Resources\Setting($setting)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -452,6 +509,9 @@ class SettingController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.admin.resource.settings.show', ['setting' => $setting->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $packageInfo->model_route()
+        ), ['setting' => $setting->id]));
     }
 }

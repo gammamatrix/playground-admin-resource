@@ -17,7 +17,7 @@ use ValueError;
 class UserTestCase extends TestCase
 {
     // NOTE: App\Models\User does not exist during testing
-    // public string $fqdn = \App\Models\User::class;
+    public string $fqdn = \Playground\Models\User::class;
 
     /**
      * @var array<string, string>

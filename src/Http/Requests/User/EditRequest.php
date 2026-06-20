@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Playground\Admin\Resource\Http\Requests\User;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Playground\Admin\Resource\Http\Requests\FormRequest;
 
 /**

@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-    bootstrap="vendor/autoload.php"
-    colors="true"
-    stopOnSkipped="false"
-    backupGlobals="false"
-    beStrictAboutTestsThatDoNotTestAnything="true"
-    beStrictAboutOutputDuringTests="true"
-    cacheResult="false"
-    failOnRisky="true"
-    failOnWarning="true"
-    processIsolation="false"
-    stopOnError="true"
-    stopOnFailure="true"
-    cacheDirectory=".phpunit.cache"
-    backupStaticProperties="false"
-    displayDetailsOnIncompleteTests="true"
-    displayDetailsOnSkippedTests="true"
-    displayDetailsOnTestsThatTriggerDeprecations="true"
-    displayDetailsOnTestsThatTriggerErrors="true"
-    displayDetailsOnTestsThatTriggerNotices="true"
-    displayDetailsOnTestsThatTriggerWarnings="true"
-    testdox="true">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         stopOnSkipped="false"
+         backupGlobals="false"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutOutputDuringTests="true"
+         cacheResult="false"
+         failOnRisky="true"
+         failOnWarning="true"
+         processIsolation="false"
+         stopOnError="false"
+         stopOnFailure="false"
+         cacheDirectory=".phpunit.cache"
+         backupStaticProperties="false"
+         displayDetailsOnIncompleteTests="true"
+         displayDetailsOnSkippedTests="true"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnTestsThatTriggerErrors="true"
+         displayDetailsOnTestsThatTriggerNotices="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         testdox="true">
     <testsuites>
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
@@ -40,10 +39,10 @@
             <clover outputFile="output/clover.xml" />
             <cobertura outputFile="output/cobertura.xml" />
             <crap4j outputFile="output/crap4j.xml" threshold="50" />
-            <html outputDirectory="output/html" lowUpperBound="50" highLowerBound="90"/>
+            <!-- <html outputDirectory="output/html" lowUpperBound="50" highLowerBound="90" /> -->
             <php outputFile="output/coverage.php" />
             <text outputFile="output/coverage.txt" showUncoveredFiles="false" showOnlySummary="true" />
-            <xml outputDirectory="output/xml"/>
+            <!-- <xml outputDirectory="output/xml" /> -->
         </report>
     </coverage>
     <logging>
@@ -58,15 +57,13 @@
         </include>
     </source>
     <php>
-        <env name="APP_DEBUG" value="true" />
+        <env name="APP_DEBUG" value="false" />
         <env name="APP_ENV" value="testing" />
         <env name="APP_KEY" value="base64:lNTGdmOOxP5uNUVuCj9FB//Ssn8JmRXBdtPEE4/QReE=" />
-        <env name="AUTH_PROVIDERS_USERS_MODEL" value="Playground\Test\Models\User" />
         <env name="BCRYPT_ROUNDS" value="4" />
         <env name="CACHE_DRIVER" value="array" />
         <env name="DB_CONNECTION" value="sqlite" />
         <env name="DB_DATABASE" value=":memory:" />
-        <env name="LOG_CHANNEL" value="stderr"/>
         <env name="PLAYGROUND_TEST_DB_MIGRATIONS" value="false"/>
         <env name="PLAYGROUND_TEST_PASSWORD" value="password-123"/>
         <env name="MAIL_MAILER" value="log" />

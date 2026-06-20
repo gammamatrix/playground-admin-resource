@@ -10,6 +10,7 @@ namespace Playground\Admin\Resource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use Playground\Auth\Policies\Policy;
 
@@ -18,8 +19,7 @@ use Playground\Auth\Policies\Policy;
  */
 class ServiceProvider extends AuthServiceProvider
 {
-    public const VERSION = '75.0.0';
-
+    public const string VERSION = '75.0.0';
 
     protected string $package = 'playground-admin-resource';
 
@@ -101,7 +101,7 @@ class ServiceProvider extends AuthServiceProvider
                 );
             }
 
-            if ($this->app->runningInConsole()) {
+            if (App::runningInConsole()) {
                 // Publish configuration
                 $this->publishes([
                     sprintf('%1$s/config/%2$s.php', dirname(__DIR__), $this->package) => config_path(sprintf('%1$s.php', $this->package)),
@@ -205,7 +205,7 @@ class ServiceProvider extends AuthServiceProvider
             '<fg=magenta;options=bold>Sitemap</> Views' => ! empty($sitemap['enable']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',
             '<fg=magenta;options=bold>Sitemap</> Guest' => ! empty($sitemap['guest']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',
             '<fg=magenta;options=bold>Sitemap</> User' => ! empty($sitemap['user']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',
-            '<fg=magenta;options=bold>Sitemap</> [view]' => !empty($sitemap['view']) && is_string($sitemap['view']) ? sprintf('[%s]', $sitemap['view']) : '',
+            '<fg=magenta;options=bold>Sitemap</> [view]' => ! empty($sitemap['view']) && is_string($sitemap['view']) ? sprintf('[%s]', $sitemap['view']) : '',
 
             '<fg=red;options=bold>Route</> admin' => ! empty($routes['admin']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',
             '<fg=red;options=bold>Route</> settings' => ! empty($routes['settings']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',

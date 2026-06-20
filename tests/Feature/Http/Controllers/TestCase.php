@@ -18,6 +18,7 @@ class TestCase extends BaseTestCase
 {
     use Resource\Playground\CreateJsonTrait;
     use Resource\Playground\CreateTrait;
+    // TODO Investigate user destroy
     use Resource\Playground\DestroyJsonTrait;
     use Resource\Playground\DestroyTrait;
     use Resource\Playground\EditJsonTrait;

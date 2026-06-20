@@ -67,6 +67,7 @@
         "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max",
         "cloc": "cloc --exclude-dir=output,vendor .",
         "format": "vendor/bin/pint",
+        "format-blade": "npx prettier --write \"resources/views/**/*.blade.php\"",
         "test": "vendor/bin/testbench package:test",
         "test-dev": [
             "Composer\\Config::disableProcessTimeout",

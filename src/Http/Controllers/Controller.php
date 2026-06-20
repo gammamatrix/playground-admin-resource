@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 // use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Playground\PackageInfo;
 
 /**
  * \Playground\Admin\Resource\Http\Controllers\Controller
@@ -24,29 +25,16 @@ abstract class Controller extends BaseController
     /**
      * @var array<string, string>
      */
-    public array $packageInfo = [];
+    public array $packageInfo = [
+        'module_label' => 'Admin',
+        'module_label_plural' => 'Admin',
+        'module_route' => 'playground.admin.resource',
+        'module_slug' => 'admin',
+        'privilege' => 'playground-admin-resource',
+    ];
 
-    protected function getViewPath(
-        string $controller = '',
-        string $view = ''
-    ): string {
-        $basePath = config('playground-admin-resource.blade');
-
-        return sprintf(
-            '%1$s%2$s%3$s%4$s',
-            empty($basePath) || ! is_string($basePath) ? '' : $basePath,
-            $controller,
-            $view ? '/' : '',
-            $view
-        );
-    }
-
-    protected function setPackageInfoValue(
-        string $key,
-        string $value = ''
-    ): void {
-        if ($key) {
-            $this->packageInfo[$key] = $value;
-        }
+    public function packageInfo(): PackageInfo
+    {
+        return new PackageInfo()->setOptions($this->packageInfo);
     }
 }

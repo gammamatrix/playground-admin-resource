@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Tests\Feature\Playground\Admin\Resource;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Orchestra\Testbench\Concerns\WithWorkbench;
 use Playground\Test\OrchestraTestCase;
 use Tests\Unit\Playground\Admin\Resource\PackageProviders;
 
@@ -18,6 +19,7 @@ class TestCase extends OrchestraTestCase
 {
     use DatabaseTransactions;
     use PackageProviders;
+    use WithWorkbench;
 
     /**
      * @var array<string, array<string, array<int, string>>>

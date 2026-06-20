@@ -3,15 +3,16 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Eloquent\Model;
-use Playground\Auth\Policies\Policy;
 use Playground\Admin\Models\Setting;
 use Playground\Admin\Resource\Policies\SettingPolicy;
+use Playground\Auth\Policies\Policy;
 
 /**
  * Playground: CMS Resource Configuration and Environment Variables
  *
  * @return array{
  *       about: bool,
+ *       blade: string,
  *       layout: string,
  *       load: array{
  *           policies: bool,
@@ -41,14 +42,13 @@ use Playground\Admin\Resource\Policies\SettingPolicy;
  *           trashable: bool,
  *           rules: string,
  *       },
- *       blade: string,
- *       abilities: array<string, string[]>,
  *       sitemap: array{
  *            enable: bool,
  *            guest: bool,
  *            user: bool,
  *            view: string
- *       }
+ *       },
+ *       abilities: array<string, string[]>
  *   }
  */
 return [
@@ -64,6 +64,16 @@ return [
     */
 
     'about' => (bool) env('PLAYGROUND_ADMIN_RESOURCE_ABOUT', true),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Templates
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'blade' => env('PLAYGROUND_ADMIN_RESOURCE_BLADE', 'playground-admin-resource::'),
 
     /*
     |--------------------------------------------------------------------------
@@ -150,16 +160,6 @@ return [
         'user' => (bool) env('PLAYGROUND_ADMIN_RESOURCE_SITEMAP_USER', true),
         'view' => env('PLAYGROUND_ADMIN_RESOURCE_SITEMAP_VIEW', 'playground-admin-resource::sitemap'),
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Templates
-    |--------------------------------------------------------------------------
-    |
-    |
-    */
-
-    'blade' => env('PLAYGROUND_ADMIN_RESOURCE_BLADE', 'playground-admin-resource::'),
 
     /*
     |--------------------------------------------------------------------------

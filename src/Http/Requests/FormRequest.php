@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Playground\Admin\Resource\Http\Requests;
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest as BaseFormRequest;
 
 /**
