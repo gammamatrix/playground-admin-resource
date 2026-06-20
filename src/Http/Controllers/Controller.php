@@ -1,9 +1,10 @@
 <?php
 
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 
 namespace Playground\Admin\Resource\Http\Controllers;
 
@@ -35,6 +36,6 @@ abstract class Controller extends BaseController
 
     public function packageInfo(): PackageInfo
     {
-        return new PackageInfo()->setOptions($this->packageInfo);
+        return (new PackageInfo())->setOptions($this->packageInfo);
     }
 }
