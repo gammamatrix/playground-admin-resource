@@ -9,6 +9,7 @@ namespace Tests\Feature\Playground\Admin\Resource\Http\Controllers;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Playground\Models\User;
 use ValueError;
 
 /**
@@ -17,7 +18,7 @@ use ValueError;
 class UserTestCase extends TestCase
 {
     // NOTE: App\Models\User does not exist during testing
-    public string $fqdn = \Playground\Models\User::class;
+    public string $fqdn = User::class;
 
     /**
      * @var array<string, string>
@@ -27,7 +28,7 @@ class UserTestCase extends TestCase
         'model_label' => 'User',
         'model_label_plural' => 'Users',
         'model_route' => 'playground.admin.resource.users',
-        'model_slug' => 'id',
+        'model_slug' => 'user',
         'model_slug_plural' => 'users',
         'module_label' => 'Admin',
         'module_label_plural' => 'Admin',

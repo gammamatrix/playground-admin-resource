@@ -140,7 +140,13 @@ class UpdateRequestTest extends RequestTestCase
 
         $this->assertEmpty($this->invokeProtected($request, 'prepareForValidation'));
 
-        $input = $request->input();
+        $input = [];
+        if (is_callable([$request, 'input'])) {
+            /**
+             * @var array<mixed> $input
+             */
+            $input = $request->input();
+        }
         $this->assertArrayHasKey('title', $input);
         $this->assertSame('Captain', $input['title']);
         $this->assertArrayHasKey('label', $input);

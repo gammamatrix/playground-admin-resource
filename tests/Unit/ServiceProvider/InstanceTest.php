@@ -22,6 +22,7 @@ class InstanceTest extends TestCase
     {
         $instance = (new \ReflectionClass(ServiceProvider::class))->newInstanceWithoutConstructor();
 
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertNotEmpty(ServiceProvider::VERSION);
         $this->assertIsString(ServiceProvider::VERSION);
         $this->assertSame(ServiceProvider::VERSION, $instance::VERSION);
@@ -49,6 +50,8 @@ class InstanceTest extends TestCase
 
         /**
          * @var array<class-string, class-string> $policies
+         *
+         * @phpstan-ignore varTag.nativeType
          */
         $policies = [
             '\\Some\\InvalidModelClass' => '\\Some\\InvalidPolicyClass',
@@ -78,6 +81,8 @@ class InstanceTest extends TestCase
 
         /**
          * @var array<class-string, class-string> $policies
+         *
+         * @phpstan-ignore varTag.nativeType
          */
         $policies = [
             Model::class => '\\Some\\InvalidPolicyClass',

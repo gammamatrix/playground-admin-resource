@@ -14,61 +14,61 @@ use Tests\Feature\Playground\Admin\Resource\Http\Controllers\UserTestCase;
  */
 class UserRouteTest extends UserTestCase
 {
-    protected int $status_code_guest_create = 302;
+    protected int $status_code_guest_create = 403;
 
-    protected int $status_code_json_guest_create = 401;
+    protected int $status_code_json_guest_create = 403;
 
-    protected int $status_code_guest_destroy = 302;
+    protected int $status_code_guest_destroy = 403;
 
-    protected int $status_code_json_guest_destroy = 401;
+    protected int $status_code_json_guest_destroy = 403;
 
-    protected int $status_code_json_user_destroy = 403;
+    protected int $status_code_json_user_destroy = 401;
 
-    protected int $status_code_user_destroy = 403;
+    protected int $status_code_user_destroy = 401;
 
-    protected int $status_code_json_guest_edit = 401;
+    protected int $status_code_json_guest_edit = 403;
 
-    protected int $status_code_guest_edit = 302;
+    protected int $status_code_guest_edit = 403;
 
-    protected int $status_code_json_guest_index = 401;
+    protected int $status_code_json_guest_index = 403;
 
-    protected int $status_code_guest_index = 302;
+    protected int $status_code_guest_index = 403;
 
-    protected int $status_code_json_guest_lock = 401;
+    protected int $status_code_json_guest_lock = 403;
 
-    protected int $status_code_guest_lock = 302;
+    protected int $status_code_guest_lock = 403;
 
-    protected int $status_code_json_user_lock = 403;
+    protected int $status_code_json_user_lock = 401;
 
-    protected int $status_code_user_lock = 403;
+    protected int $status_code_user_lock = 401;
 
-    protected int $status_code_json_guest_restore = 401;
+    protected int $status_code_json_guest_restore = 403;
 
-    protected int $status_code_guest_restore = 302;
+    protected int $status_code_guest_restore = 403;
 
-    protected int $status_code_json_user_restore = 403;
+    protected int $status_code_json_user_restore = 401;
 
-    protected int $status_code_user_restore = 403;
+    protected int $status_code_user_restore = 401;
 
-    protected int $status_code_json_guest_show = 401;
+    protected int $status_code_json_guest_show = 403;
 
-    protected int $status_code_guest_show = 302;
+    protected int $status_code_guest_show = 403;
 
-    protected int $status_code_guest_json_store = 401;
+    protected int $status_code_guest_json_store = 403;
 
-    protected int $status_code_guest_store = 302;
+    protected int $status_code_guest_store = 403;
 
-    protected int $status_code_guest_json_unlock = 401;
+    protected int $status_code_guest_json_unlock = 403;
 
-    protected int $status_code_guest_unlock = 302;
+    protected int $status_code_guest_unlock = 403;
 
-    protected int $status_code_guest_json_update = 401;
+    protected int $status_code_guest_json_update = 403;
 
-    protected int $status_code_guest_update = 302;
+    protected int $status_code_guest_update = 403;
 
-    protected int $status_code_user_json_unlock = 403;
+    protected int $status_code_user_json_unlock = 401;
 
-    protected int $status_code_user_unlock = 403;
+    protected int $status_code_user_unlock = 401;
 
     protected string $create_info_parameter = 'email';
 
@@ -135,10 +135,4 @@ class UserRouteTest extends UserTestCase
     protected array $update_payload = [
         'email' => 'different@example.org',
     ];
-
-//    public function test_json_destroy_as_admin_and_succeed()
-//    {
-//        $this->markTestSkipped('TODO: investigate user destroy');
-//        // parent::test_json_destroy_as_admin_and_succeed();
-//    }
 }

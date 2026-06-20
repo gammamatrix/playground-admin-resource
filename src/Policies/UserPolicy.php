@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Playground
  */
+
 namespace Playground\Admin\Resource\Policies;
 
-use Illuminate\Auth\Access\Response;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Playground\Auth\Policies\ModelPolicy;
-use Playground\Admin\Models\User;
 
 /**
  * \Playground\Admin\Resource\Policies\UserPolicy

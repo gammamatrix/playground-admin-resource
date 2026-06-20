@@ -17,6 +17,12 @@ $filters = empty($filters) || ! is_array($filters) ? [] : $filters;
 $validated = empty($validated) || ! is_array($validated) ? [] : $validated;
 
 $columnsViewable = [
+    "name" => [
+        "label" => "Name",
+    ],
+    "email" => [
+        "label" => "Email",
+    ],
     "user_type" => [
         "hide-sm" => false,
         "label" => "User Type",
@@ -336,9 +342,10 @@ $columnsViewable = [
 $columnsMobile = ["title", "location_type", "slug", "description", "published"];
 
 $columnsStandard = [
+    "name",
+    "email",
     "title",
-    "location_type",
-    "location_group",
+    "user_type",
     "slug",
     "label",
     "description",

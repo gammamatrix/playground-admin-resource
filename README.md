@@ -1,25 +1,32 @@
-# Playground Admin Resource
+# Playground: Admin Resource
 
 [![Playground CI Workflow](https://github.com/gammamatrix/playground-admin-resource/actions/workflows/ci.yml/badge.svg?branch=develop)](https://raw.githubusercontent.com/gammamatrix/playground-admin-resource/testing/develop/testdox.txt)
 [![Test Coverage](https://raw.githubusercontent.com/gammamatrix/playground-admin-resource/testing/develop/coverage.svg)](tests)
+[![PHPStan Level 10](https://img.shields.io/badge/PHPStan-level%2010-brightgreen)](.github/workflows/ci.yml#L128)
 
-[//]: # ([![PHPStan Level 10 src and tests]&#40;https://img.shields.io/badge/PHPStan-level%2010-brightgreen&#41;]&#40;.github/workflows/ci.yml#L120&#41;)
+Playground: Admin Resource
 
-The `playground-admin-resource` Laravel package.
+This package provides an API and a Blade UI for interacting with the [Playground: Admin](https://github.com/gammamatrix/playground-admin), a model package for Laravel.
+
+If you need a JSON API without a UI, then have a look at [Playground: Admin API.](https://github.com/gammamatrix/playground-admin-api)
 
 ## Documentation
 
-Read more on using [Playground Admin Resource at Read the Docs: Playground Documentation.](https://gammamatrix-playground.readthedocs.io/en/develop/components/admin.html)
+Read more on using [Playground: Admin Resource at Read the Docs: Playground Documentation](https://gammamatrix-playground.readthedocs.io/en/develop/built-components/admin.html)
 
+### Postman
 
-### Swagger
+A postman collection is provided in the repository: [postman-playground-admin-resource.json.](postman-playground-admin-resource.json)
+- This same collection is viewable on the [.]()
 
-This application provides Swagger documentation: [swagger.json](swagger.json).
-- The endpoint models support locks, trash with force delete, restoring and more.
+### OpenAPI
+
+This application provides OpenAPI documentation: [openapi.yaml](openapi.yaml).
+- The endpoint models support locks, trash with force delete, restoring, revisions and more.
 - Index endpoints support advanced query filtering.
 
-Swagger API Documentation is built with npm.
-- npm is only needed to generate documentation and is not needed to operate the Admin UI and API Resource.
+OpenAPI API Documentation is built with npm using Redocly.
+- npm is only needed to generate documentation and is not needed to operate the Playground: Admin Resource API.
 
 See [package.json](package.json) requirements.
 
@@ -29,16 +36,14 @@ Install npm.
 npm install
 ```
 
-Build the documentation to generate the [swagger.json](swagger.json) configuration.
+Build the documentation to generate the [openapi.yaml](openapi.yaml) configuration.
 
 ```sh
 npm run docs
 ```
 
 Documentation
-- Preview [swagger.json on the Swagger Editor UI.](https://editor.swagger.io/?url=https://raw.githubusercontent.com/gammamatrix/playground-admin-resource/develop/swagger.json)
-- Preview [swagger.json on the Swagger Next Editor UI.](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/gammamatrix/playground-admin-resource/develop/swagger.json)
-- Preview [swagger.json on the Redocly Editor UI.](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/gammamatrix/playground-admin-resource/develop/swagger.json)
+- Preview [openapi.yaml on the Redocly Editor UI.](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/gammamatrix/playground-admin-resource/develop/openapi.yaml)
 
 ## Installation
 
@@ -52,7 +57,7 @@ composer require gammamatrix/playground-admin-resource
 
 Playground provides information in the `artisan about` command.
 
-<!-- <img src="resources/docs/artisan-about-playground-admin-resource.png" alt="screenshot of artisan about command with Playground Admin Resource."> -->
+<!-- <img src="resources/docs/artisan-about-playground-admin-resource.png" alt="screenshot of artisan about command with Playground: Admin Resource."> -->
 
 ## Configuration
 
@@ -62,7 +67,7 @@ You can publish the config file with:
 php artisan vendor:publish --provider="Playground\Admin\Resource\ServiceProvider" --tag="playground-config"
 ```
 
-All routes are enabled by default. They may be disabled via enviroment variable or the configuration.
+All routes are enabled by default. They may be disabled via environment variable or the configuration.
 
 See the contents of the published config file: [config/playground-admin-resource.php](config/playground-admin-resource.php)
 
@@ -79,7 +84,6 @@ you may override the options via system environment variables.
 
 Information on [environment variables is available on the wiki for this package](https://github.com/gammamatrix/playground-admin-resource/wiki/Environment-Variables)
 
-
 ## Migrations
 
 This package requires the migrations in [playground-admin](https://github.com/gammamatrix/playground-admin) a Laravel package.
@@ -91,33 +95,32 @@ composer cloc
 ```
 
 ```
-➜  playground-admin-resource git:(develop) composer cloc
-> cloc --exclude-dir=output,vendor .
-     142 text files.
-      97 unique files.
-      46 files ignored.
+➜  playground-admin-resource git:(develop) ✗ composer cloc
+     119 text files.
+     106 unique files.                                          
+      62 files ignored.
 
-github.com/AlDanial/cloc v 1.98  T=0.16 s (595.4 files/s, 64488.0 lines/s)
+github.com/AlDanial/cloc v 2.08  T=0.07 s (1540.2 files/s, 294536.5 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
-PHP                             59            707            881           3340
-JSON                             3              0              0           2613
-YAML                            14              5              0           1731
-Blade                           15             70             15            783
-XML                              3              0              5            225
-Markdown                         2             41              1             74
+JSON                             4              0              0          10671
+PHP                             57            824           1064           3124
+YAML                            15              5              6           1749
+Blade                           14             75             19           1574
+XML                             13              0              7            949
+Markdown                         2             54              1            133
 INI                              1              3              0             12
 -------------------------------------------------------------------------------
-SUM:                            97            826            902           8778
+SUM:                           106            961           1097          18212
 -------------------------------------------------------------------------------
 ```
 
 ## PHPStan
 
-Tests at level 9 on:
+Tests at level 10 on:
 - `config/`
-- `database/`
+- `lang/`
 - `resources/views/`
 - `routes/`
 - `src/`
@@ -130,16 +133,43 @@ composer analyse
 
 ## Coding Standards
 
+Format source code:
 ```sh
 composer format
 ```
 
-## Tests
+Format blades in resources/views:
 
 ```sh
+composer format-blade
+```
+- **NOTE:** requires installing dev packages from package.json.
+
+```sh
+npm install
+```
+
+## Testing
+
+Run unit tests:
+```sh
 composer test
+```
+
+Run unit and feature tests:
+```sh
+composer test-dev
+```
+
+Run unit and feature tests in parallel:
+```sh
+composer test-parallel
 ```
 
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

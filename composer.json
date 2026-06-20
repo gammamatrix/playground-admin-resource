@@ -65,7 +65,7 @@
     },
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max",
-        "cloc": "cloc --exclude-dir=output,vendor .",
+        "cloc": "cloc --exclude-dir=node_modules,output,vendor .",
         "format": "vendor/bin/pint",
         "format-blade": "npx prettier --write \"resources/views/**/*.blade.php\"",
         "test": "vendor/bin/testbench package:test",

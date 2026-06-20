@@ -5,7 +5,9 @@ declare(strict_types=1);
 use Illuminate\Database\Eloquent\Model;
 use Playground\Admin\Models\Setting;
 use Playground\Admin\Resource\Policies\SettingPolicy;
+use Playground\Admin\Resource\Policies\UserPolicy;
 use Playground\Auth\Policies\Policy;
+use Playground\Models\User;
 
 /**
  * Playground: CMS Resource Configuration and Environment Variables
@@ -115,6 +117,7 @@ return [
 
     'policies' => [
         Setting::class => SettingPolicy::class,
+        User::class => UserPolicy::class,
     ],
 
     /*

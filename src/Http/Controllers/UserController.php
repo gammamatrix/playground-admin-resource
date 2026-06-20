@@ -26,14 +26,14 @@ class UserController extends Controller
      * @var array<string, string>
      */
     public array $packageInfo = [
-        'model_attribute' => 'title',
+        'model_attribute' => 'name',
         'model_label' => 'User',
         'model_label_plural' => 'Users',
         'model_route' => 'playground.admin.resource.users',
         'model_slug' => 'user',
         'model_slug_plural' => 'users',
         'module_label' => 'Admin',
-        'module_label_plural' => 'Directories',
+        'module_label_plural' => 'Users',
         'module_route' => 'playground.admin.resource',
         'module_slug' => 'admin',
         'privilege' => 'playground-admin-resource:user',

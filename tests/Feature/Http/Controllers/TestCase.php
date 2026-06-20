@@ -18,6 +18,7 @@ class TestCase extends BaseTestCase
 {
     use Resource\Playground\CreateJsonTrait;
     use Resource\Playground\CreateTrait;
+
     // TODO Investigate user destroy
     use Resource\Playground\DestroyJsonTrait;
     use Resource\Playground\DestroyTrait;
@@ -44,7 +45,7 @@ class TestCase extends BaseTestCase
      * @var array<string, string>
      */
     public array $packageInfo = [
-        'model_attribute' => 'label',
+        'model_attribute' => 'name',
         'model_label' => '',
         'model_label_plural' => '',
         'model_route' => '',
