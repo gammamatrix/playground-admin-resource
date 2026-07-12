@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-06-20 21:25:42</timestamp>
+  <timestamp>2026-07-12 19:31:03</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>44</methodCount>
+    <methodCount>46</methodCount>
     <crapMethodCount>0</crapMethodCount>
     <crapLoad>0</crapLoad>
-    <totalCrap>177</totalCrap>
+    <totalCrap>239</totalCrap>
     <crapMethodPercent>0</crapMethodPercent>
   </stats>
   <methods>
@@ -168,6 +168,17 @@
     <method>
       <package>Playground\Admin\Resource\Http\Controllers</package>
       <className>Playground\Admin\Resource\Http\Controllers\UserController</className>
+      <methodName>editPermissions</methodName>
+      <methodSignature>editPermissions(User $user, Requests\User\EditRequest $request): JsonResponse|View|Resources\User</methodSignature>
+      <fullMethod>editPermissions(User $user, Requests\User\EditRequest $request): JsonResponse|View|Resources\User</fullMethod>
+      <crap>20</crap>
+      <complexity>4</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Admin\Resource\Http\Controllers</package>
+      <className>Playground\Admin\Resource\Http\Controllers\UserController</className>
       <methodName>destroy</methodName>
       <methodSignature>destroy(User $user, Requests\User\DestroyRequest $request): Response|RedirectResponse</methodSignature>
       <fullMethod>destroy(User $user, Requests\User\DestroyRequest $request): Response|RedirectResponse</fullMethod>
@@ -196,6 +207,17 @@
       <crap>6</crap>
       <complexity>6</complexity>
       <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Admin\Resource\Http\Controllers</package>
+      <className>Playground\Admin\Resource\Http\Controllers\UserController</className>
+      <methodName>permissions</methodName>
+      <methodSignature>permissions(Requests\User\IndexRequest $request): JsonResponse|View|Resources\UserCollection</methodSignature>
+      <fullMethod>permissions(Requests\User\IndexRequest $request): JsonResponse|View|Resources\UserCollection</fullMethod>
+      <crap>42</crap>
+      <complexity>6</complexity>
+      <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
