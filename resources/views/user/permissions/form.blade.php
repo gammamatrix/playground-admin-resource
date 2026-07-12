@@ -24,7 +24,7 @@
 )
 
 @section("form-tertiary")
-    {{-- @include("playground-admin-resource::user/form-dates") --}}
+    @include("playground-admin-resource::user/form-access-control")
 @endsection
 
 @section("form-breadcrumbs-post-index")

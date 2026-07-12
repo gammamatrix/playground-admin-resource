@@ -34,6 +34,14 @@ use Playground\Models\User;
  *           class-string<Model>,
  *           class-string<Policy>
  *       >,
+ *       permissions: array{
+ *           forbidden: string[],
+ *            settable: string[],
+ *        },
+ *       roles: array{
+ *           forbidden: string[],
+ *            settable: string[],
+ *        },
  *       routes: array{
  *           cms: bool,
  *           pages: bool,
@@ -118,6 +126,131 @@ return [
     'policies' => [
         Setting::class => SettingPolicy::class,
         User::class => UserPolicy::class,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Permissions
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'permissions' => [
+        'forbidden' => [],
+        'settable' => [],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Roles
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'roles' => [
+        'forbidden' => [
+            'root',
+        ],
+        'settable' => [
+            // Admins may be promoted to wheel.
+            [
+                'id' => 'admin',
+                'label' => 'Admin',
+                'group' => 'admin',
+            ],
+            [
+                'id' => 'client',
+                'label' => 'Client',
+                'group' => 'user',
+            ],
+            [
+                'id' => 'client-admin',
+                'label' => 'Client Admin',
+                'group' => 'admin',
+            ],
+            [
+                'id' => 'guest',
+                'label' => 'Guest',
+                'group' => 'user',
+            ],
+            [
+                'id' => 'manager',
+                'label' => 'Manager',
+                'group' => 'admin',
+            ],
+            [
+                'id' => 'manager-admin',
+                'label' => 'Manager Admin',
+                'group' => 'admin',
+            ],
+            [
+                'id' => 'nobody',
+                'label' => 'Nobody',
+                'group' => 'user',
+            ],
+            [
+                'id' => 'partner',
+                'label' => 'Partner',
+                'group' => 'user',
+            ],
+            [
+                'id' => 'partner-admin',
+                'label' => 'Partner Admin',
+                'group' => 'admin',
+            ],
+            [
+                'id' => 'publisher',
+                'label' => 'Publisher',
+                'group' => 'admin',
+            ],
+            [
+                'id' => 'publisher-admin',
+                'label' => 'Publisher Admin',
+                'group' => 'admin',
+            ],
+            [
+                'id' => 'sales',
+                'label' => 'Sales',
+                'group' => 'admin',
+            ],
+            [
+                'id' => 'sales-admin',
+                'label' => 'Sales Admin',
+                'group' => 'admin',
+            ],
+            [
+                'id' => 'support',
+                'label' => 'Support',
+                'group' => 'user',
+            ],
+            [
+                'id' => 'support-admin',
+                'label' => 'Support Admin',
+                'group' => 'admin',
+            ],
+            [
+                'id' => 'user',
+                'label' => 'User',
+                'group' => 'user',
+            ],
+            [
+                'id' => 'user-admin',
+                'label' => 'User Admin',
+                'group' => 'admin',
+            ],
+            [
+                'id' => 'vendor',
+                'label' => 'Vendor',
+                'group' => 'user',
+            ],
+            [
+                'id' => 'vendor-admin',
+                'label' => 'Vendor Admin',
+                'group' => 'admin',
+            ],
+        ],
     ],
 
     /*

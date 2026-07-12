@@ -1,5 +1,5 @@
 <fieldset class="mb-3">
-    <legend>Information</legend>
+    <legend>{{ __("Information") }}</legend>
 
     <x-playground::forms.column
         column="title"

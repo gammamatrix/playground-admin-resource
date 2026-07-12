@@ -202,4 +202,28 @@
             </div>
         </div>
     </fieldset>
+
+    <fieldset>
+        <legend class="text-warning">Access</legend>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-check form-check-inline">
+                    <input type="hidden" name="locked" value="0" />
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="form-input-locked"
+                        name="locked"
+                        value="1"
+                        {{ $data->locked ? "checked" : "" }}
+                    />
+                    <label class="form-check-label" for="form-input-locked">
+                        <i class="fa-solid fa-lock text-warning"></i>
+                        {{ __("Locked") }}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </fieldset>
 </fieldset>
