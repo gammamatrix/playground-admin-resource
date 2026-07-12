@@ -44,6 +44,11 @@ Route::group([
         'uses' => 'UserController@index',
     ])->can('index', User::class);
 
+    Route::get('/permissions', [
+        'as' => 'playground.admin.resource.users.permissions',
+        'uses' => 'UserController@permissions',
+    ])->can('edit', User::class);
+
     // UI
 
     Route::get('/create', [
@@ -54,6 +59,11 @@ Route::group([
     Route::get('/edit/{user}', [
         'as' => 'playground.admin.resource.users.edit',
         'uses' => 'UserController@edit',
+    ])->whereUuid('user')->can('edit', 'user');
+
+    Route::get('/edit/{user}/permissions', [
+        'as' => 'playground.admin.resource.users.permissions.edit',
+        'uses' => 'UserController@editPermissions',
     ])->whereUuid('user')->can('edit', 'user');
 
     // Route::get('/go/{id}', [

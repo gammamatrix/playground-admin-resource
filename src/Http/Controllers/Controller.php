@@ -36,6 +36,6 @@ abstract class Controller extends BaseController
 
     public function packageInfo(): PackageInfo
     {
-        return (new PackageInfo())->setOptions($this->packageInfo);
+        return (new PackageInfo)->setOptions($this->packageInfo);
     }
 }

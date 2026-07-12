@@ -152,6 +152,61 @@ class UserController extends Controller
     }
 
     /**
+     * Edit the user permissions in storage.
+     *
+     * @route GET /resource/admin/users/edit/{user}/permissions playground.admin.resource.users.permissions.edit
+     */
+    public function editPermissions(
+        User $user,
+        Requests\User\EditRequest $request
+    ): JsonResponse|View|Resources\User {
+
+        $packageInfo = $this->packageInfo();
+
+        $validated = $request->validated();
+
+        if ($request->expectsJson()) {
+            return new Resources\User($user)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
+
+        $currentUser = $request->user();
+
+        $flash = $user->toArray();
+
+        if (! empty($validated['_return_url'])) {
+            $flash['_return_url'] = $validated['_return_url'];
+        }
+
+        $meta = [
+            'session_user_id' => $currentUser?->id,
+            'id' => $currentUser?->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'info' => $packageInfo,
+        ];
+
+        $data = [
+            'data' => $user,
+            'meta' => $meta,
+            '_method' => 'patch',
+        ];
+
+        if (! empty($validated['_return_url'])) {
+            $data['_return_url'] = $validated['_return_url'];
+        }
+
+        session()->flashInput($flash);
+
+        /**
+         * @var view-string $view
+         */
+        $view = sprintf('%1$s/permissions/form', $packageInfo->view());
+
+        return view($view, $data);
+    }
+
+    /**
      * Remove the User resource from storage.
      *
      * @route DELETE /resource/admin/users/{user} playground.admin.resource.users.destroy
@@ -316,6 +371,94 @@ class UserController extends Controller
          * @var view-string $view
          */
         $view = sprintf('%1$s/index', $packageInfo->view());
+
+        return view($view, $data);
+    }
+
+    /**
+     * Display a listing of User permissions.
+     *
+     * @route GET /resource/admin/users playground.admin.resource.users.permissions
+     */
+    public function permissions(
+        Requests\User\IndexRequest $request
+    ): JsonResponse|View|Resources\UserCollection {
+
+        $packageInfo = $this->packageInfo();
+
+        /**
+         * @var array{
+         *     sort: string|array<mixed>,
+         *     filter: array{
+         *         trash: string
+         *     },
+         *     perPage: int
+         * } $validated
+         */
+        $validated = $request->validated();
+
+        $query = User::addSelect(sprintf('%1$s.*', $packageInfo->table()));
+
+        $query->sort($validated['sort'] ?? null);
+
+        if (! empty($validated['filter']) && is_array($validated['filter'])) {
+
+            $query->filterTrash($validated['filter']['trash'] ?? null);
+
+            $query->filterIds(
+                $request->getPaginationIds(),
+                $validated
+            );
+
+            $query->filterFlags(
+                $request->getPaginationFlags(),
+                $validated
+            );
+
+            $query->filterDates(
+                $request->getPaginationDates(),
+                $validated
+            );
+
+            $query->filterColumns(
+                $request->getPaginationColumns(),
+                $validated
+            );
+        }
+
+        $perPage = ! empty($validated['perPage']) && is_int($validated['perPage']) ? $validated['perPage'] : null;
+        $paginator = $query->paginate($perPage);
+
+        $paginator->appends($validated);
+
+        if ($request->expectsJson()) {
+            return new Resources\UserCollection($paginator)->response($request);
+        }
+
+        $currentUser = $request->user();
+
+        $meta = [
+            'session_user_id' => $currentUser?->id,
+            'columns' => $request->getPaginationColumns(),
+            'dates' => $request->getPaginationDates(),
+            'flags' => $request->getPaginationFlags(),
+            'ids' => $request->getPaginationIds(),
+            'rules' => $request->rules(),
+            'sortable' => $request->getSortable(),
+            'timestamp' => Carbon::now()->toJson(),
+            'validated' => $validated,
+            'info' => $packageInfo,
+        ];
+
+        $data = [
+            'paginator' => $paginator,
+            'meta' => $meta,
+        ];
+
+        /**
+         * @var view-string $view
+         */
+        $view = sprintf('%1$s/permissions', $packageInfo->view());
 
         return view($view, $data);
     }

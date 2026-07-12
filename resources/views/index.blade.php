@@ -65,6 +65,23 @@
                                         </a>
                                     </div>
                                 </div>
+                                <div class="card m-1">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Users</h5>
+                                        <h6
+                                            class="card-subtitle mb-2 text-muted"
+                                        >
+                                            Manage user permissions
+                                        </h6>
+                                        <p class="card-text"></p>
+                                        <a
+                                            class="card-link"
+                                            href="{{ route("playground.admin.resource.users.permissions") }}"
+                                        >
+                                            View User Permissions
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
