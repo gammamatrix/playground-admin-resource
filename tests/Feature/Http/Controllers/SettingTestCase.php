@@ -12,7 +12,7 @@ use Playground\Admin\Models\Setting;
 /**
  * \Tests\Feature\Playground\Admin\Resource\Http\Controllers\SettingTestCase
  */
-class SettingTestCase extends TestCase
+class SettingTestCase extends PlaygroundCase
 {
     public string $fqdn = Setting::class;
 
@@ -26,6 +26,8 @@ class SettingTestCase extends TestCase
         'model_route' => 'playground.admin.resource.settings',
         'model_slug' => 'setting',
         'model_slug_plural' => 'settings',
+        'model_variable' => 'setting',
+        'model_variable_plural' => 'settings',
         'module_label' => 'Admin',
         'module_label_plural' => 'Admin',
         'module_route' => 'playground.admin.resource',

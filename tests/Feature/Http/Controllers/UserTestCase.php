@@ -15,7 +15,7 @@ use ValueError;
 /**
  * \Tests\Feature\Playground\Admin\Resource\Http\Controllers\UserTestCase
  */
-class UserTestCase extends TestCase
+class UserTestCase extends PlaygroundCase
 {
     // NOTE: App\Models\User does not exist during testing
     public string $fqdn = User::class;
@@ -30,6 +30,8 @@ class UserTestCase extends TestCase
         'model_route' => 'playground.admin.resource.users',
         'model_slug' => 'user',
         'model_slug_plural' => 'users',
+        'model_variable' => 'user',
+        'model_variable_plural' => 'users',
         'module_label' => 'Admin',
         'module_label_plural' => 'Admin',
         'module_route' => 'playground.admin.resource',

@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Tests\Feature\Playground\Admin\Resource\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Model;
-use Playground\Test\Feature\Http\Controllers\Resource;
 use Tests\Feature\Playground\Admin\Resource\TestCase as BaseTestCase;
 
 /**
@@ -16,54 +15,31 @@ use Tests\Feature\Playground\Admin\Resource\TestCase as BaseTestCase;
  */
 class TestCase extends BaseTestCase
 {
-    use Resource\Playground\CreateJsonTrait;
-    use Resource\Playground\CreateTrait;
-
-    // TODO Investigate user destroy
-    use Resource\Playground\DestroyJsonTrait;
-    use Resource\Playground\DestroyTrait;
-    use Resource\Playground\EditJsonTrait;
-    use Resource\Playground\EditTrait;
-    use Resource\Playground\IndexJsonTrait;
-    use Resource\Playground\IndexTrait;
-    use Resource\Playground\LockJsonTrait;
-    use Resource\Playground\LockTrait;
-    use Resource\Playground\RestoreJsonTrait;
-    use Resource\Playground\RestoreTrait;
-    use Resource\Playground\ShowJsonTrait;
-    use Resource\Playground\ShowTrait;
-    use Resource\Playground\StoreJsonTrait;
-    use Resource\Playground\StoreTrait;
-    use Resource\Playground\UnlockJsonTrait;
-    use Resource\Playground\UnlockTrait;
-    use Resource\Playground\UpdateJsonTrait;
-    use Resource\Playground\UpdateTrait;
-
-    protected bool $setUpUserForPlayground = true;
+    /**
+     * @var class-string<Model>
+     */
+    public string $fqdn = Model::class;
 
     /**
      * @var array<string, string>
      */
     public array $packageInfo = [
-        'model_attribute' => 'name',
+        'model_attribute' => 'title',
         'model_label' => '',
         'model_label_plural' => '',
         'model_route' => '',
         'model_slug' => '',
         'model_slug_plural' => '',
+        'model_variable' => '',
+        'model_variable_plural' => '',
         'module_label' => 'Admin',
         'module_label_plural' => 'Admin',
         'module_route' => 'playground.admin.resource',
         'module_slug' => 'admin',
-        'privilege' => '',
+        'privilege' => 'playground-admin-resource:',
         'table' => '',
-        'view' => '',
+        'view' => 'playground-admin-resource::',
     ];
-
-    /**
-     * @var class-string<Model>
-     */
-    public string $fqdn = Model::class;
 
     /**
      * @var array<int, string>

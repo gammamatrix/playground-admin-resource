@@ -19,7 +19,7 @@
                 <ul class="dropdown-menu" aria-labelledby="brand-actions">
                     <form method="POST" action="{{ $routeDelete }}" novalidate>
                         @csrf
-                        @method("delete")
+                        @method ("delete")
                         <button class="dropdown-item" role="button">
                             {{ __("Trash") }}
                             <span class="fas fa-trash float-end"></span>
@@ -101,7 +101,7 @@
                         @endif
                     </td>
                 </tr>
-                @yield("detail-information-table")
+                @yield ("detail-information-table")
             </tbody>
         </table>
 

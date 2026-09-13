@@ -32,6 +32,8 @@ class UserController extends Controller
         'model_route' => 'playground.admin.resource.users',
         'model_slug' => 'user',
         'model_slug_plural' => 'users',
+        'model_variable' => 'user',
+        'model_variable_plural' => 'users',
         'module_label' => 'Admin',
         'module_label_plural' => 'Users',
         'module_route' => 'playground.admin.resource',

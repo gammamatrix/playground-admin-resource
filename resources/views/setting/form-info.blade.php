@@ -40,12 +40,24 @@
         :rules="['maxlength' => 255]"
     />
 
-    @if (! empty($parents))
+    @php
+        if ("patch" === $_method) {
+            $parents = Playground\Admin\Models\Setting::where("id", "!=", $data->id)->get();
+        } else {
+            $parents = Playground\Admin\Models\Setting::isNotClosed()
+                ->isActive()
+                ->get();
+        }
+    @endphp
+
+    @if ($parents->isEmpty())
+        <input type="hidden" name="parent_id" value="" />
+    @else
         <x-playground::forms.column-select
             column="parent_id"
-            key="title"
+            key="label"
             label="Parent Setting"
-            :records="$parents"
+            :records="$parents->toArray()"
         />
     @endif
 </fieldset>

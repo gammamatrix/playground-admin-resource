@@ -1,4 +1,4 @@
-@extends(
+@extends (
     "playground::layouts.resource.form",
     [
         "withFormInfo" => false,
@@ -23,11 +23,11 @@
     ]
 )
 
-@section("form-tertiary")
-    @include("playground-admin-resource::user/form-access-control")
+@section ("form-tertiary")
+    @include ("playground-admin-resource::user/form-access-control")
 @endsection
 
-@section("form-breadcrumbs-post-index")
+@section ("form-breadcrumbs-post-index")
     <li class="breadcrumb-item">
         <a href="{{ route("playground.admin.resource.users.permissions") }}">
             {{ __("Permissions") }}
@@ -35,7 +35,7 @@
     </li>
 @endsection
 
-@section("form-breadcrumbs-post-edit")
+@section ("form-breadcrumbs-post-edit")
     <li class="breadcrumb-item">
         <a
             href="{{ route("playground.admin.resource.users.permissions.edit", ["user" => $data->id]) }}"

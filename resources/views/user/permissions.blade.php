@@ -209,7 +209,7 @@ if ($viewableColumns === "all") {
 
 ?>
 
-@extends(
+@extends (
     "playground::layouts.resource.index",
     [
         "withTableColumns" => $columns,
